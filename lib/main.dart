@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home/home_screen.dart';
 import 'app_screens/onboarding.dart';
 import 'app_screens/signup.dart';
 import 'app_screens/signin.dart';
@@ -20,23 +21,21 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        body:SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(50),
-            child:SingleChildScrollView(
-                  // TRY EACH ONE OF THE THREE : onboarding / sign_in / sign_up
-                child: const signin_screen(),
-                //child: const signup_screen(),
-                //child: const onboarding_screen(),
-              ),
-             ),
-            ),
-
-      ),
+      initialRoute: "/home",
+      routes: {
+        "/onboarding":(context) => const onboarding_screen(),
+        "/home":(context) => const HomeScreen(),
+        "/signin":(context) => const signin_screen(),
+        "/signup":(context) => const signup_screen(),
+      },
+      //home: const signin_screen(),
+      //home: const signup_screen(),
+      //home: const onboarding_screen(),
+      
     );
   }
 }
+
 
 /* PUBSPEC FILE fonts : 
 fonts:
@@ -57,6 +56,7 @@ fonts:
           weight: 100
 */
 /*
+   ////: CODE BELOW IS NOT IMPORTANT
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
