@@ -35,11 +35,17 @@ class _signin_screenState extends State<signin_screen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
             
-                      Icon(
-                      Icons.arrow_back_ios_rounded,
-                      color: Colors.grey[500],
-                      size: 15,
-                      ),
+                      IconButton(
+                  onPressed: () {
+                  Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    
+                  Icons.arrow_back_ios_rounded,
+                  color: Colors.grey[500],
+                  size: 15,
+                  ),
+                ),
                       
                       const Expanded(
                         child: Text("Sign In",

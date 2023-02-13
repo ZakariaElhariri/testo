@@ -13,6 +13,7 @@ class onboarding_screen extends StatefulWidget {
 class _onboarding_screenState extends State<onboarding_screen> {
   int _currentPage = 0;
   PageController _controller = PageController();
+  PageController _controller2 = PageController();
   @override
   void dispose() {
     _controller.dispose();
@@ -106,39 +107,48 @@ class _onboarding_screenState extends State<onboarding_screen> {
                         
                         //----------------------------------------------
                           SizedBox(height: 50,),
-                          Row(mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
-                                color: Colors.orange[700],
-                      
-                                  ),
-                                  width:20,
-                                  height: 5,),
-                    SizedBox(width: 5,),
-                              Container(
-                    decoration: BoxDecoration(
-                      
-                      color: Colors.grey[350],
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      
-                    ),
-                    width: 5,
-                    height: 5,
-                      ),
-                      SizedBox(width: 5,),
-                              Container(
-                    decoration: BoxDecoration(
-                      
-                      color: Colors.grey[350],
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      
-                    ),
-                    width: 5,
-                    height: 5,
-                      ),
-                            ],
+
+                          Container(
+                            height: 5,
+                            padding: EdgeInsets.symmetric(horizontal: 277.5),//277.5),
+                            child: PageView(
+                              
+                            
+                              controller: _controller2,
+                              children:[ 
+                                  Container(
+                                    decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    color: Colors.orange[700],
+                                                  
+                                      ),
+                                      width:10,
+                                      height: 5,),
+                                               
+                                  Container(
+                                                decoration: BoxDecoration(
+                                                  
+                                                  color: Colors.orange[400],
+                                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  
+                                                ),
+                                                width: 5,
+                                                height: 5,
+                                                  ),
+                                                 //hello 
+                                  Container(
+                                                decoration: BoxDecoration(
+                                                  
+                                                  color: Colors.grey[400],
+                                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  
+                                                ),
+                                                width: 4,
+                                                height: 5,
+                                                  ),
+                                
+                              ]
+                            ),
                           ),
                           SizedBox(height: 79,),
                       TextButton(
@@ -154,6 +164,8 @@ class _onboarding_screenState extends State<onboarding_screen> {
                 } else {
                   _currentPage = (_currentPage + 1) % 3;
                   _controller.animateToPage(_currentPage, duration: Duration(milliseconds: 300), curve: Curves.linear);
+                  
+                  _controller2.animateToPage(_currentPage,duration: Duration(milliseconds: 300), curve: Curves.linear);
                 }
               });
             },
