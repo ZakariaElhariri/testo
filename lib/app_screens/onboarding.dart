@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'signin.dart';
 //hello
 class onboarding_screen extends StatefulWidget {
   const onboarding_screen({super.key});
@@ -9,6 +11,14 @@ class onboarding_screen extends StatefulWidget {
 }
 
 class _onboarding_screenState extends State<onboarding_screen> {
+  int _currentPage = 0;
+  PageController _controller = PageController();
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,9 +45,48 @@ class _onboarding_screenState extends State<onboarding_screen> {
                         //--------------------------------------------------
                         // if you would like to add this piece of code to work, khass folder ikoun smitou assets westou picture smitha tokoto.png
                         // I commented it and i will replace it with a nrml sizedBox/container as you mentioned we do in the assignement
-                        Row(mainAxisAlignment: MainAxisAlignment.center,
-                          children:[Image.asset('assets/images/onboarding_screen.png',width: 250 ,height: 250,),]
-                          ),
+                        /*Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children:[Image.asset('assets/images/onboarding_screen_1.png',width: 250 ,height: 250,),]
+                          ),*/
+                          Container(
+            height: 250,
+            padding:EdgeInsets.symmetric(horizontal: 100),
+            child: PageView(
+              controller: _controller,
+              children: [
+                Container(
+                  margin: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/onboarding_screen_1.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/onboarding_screen_2.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/onboarding_screen_3.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
                           // ALTERNATE WAY :  IMAGE NETWORK !!!!
                          /* 
                           Row(mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +142,21 @@ class _onboarding_screenState extends State<onboarding_screen> {
                           ),
                           SizedBox(height: 79,),
                       TextButton(
-                        onPressed: ()=>Signin(context),
+                         onPressed: () {
+              setState(() {
+                if (_currentPage == 2) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const signin_screen(),
+                    ),
+                  );
+                } else {
+                  _currentPage = (_currentPage + 1) % 3;
+                  _controller.animateToPage(_currentPage, duration: Duration(milliseconds: 300), curve: Curves.linear);
+                }
+              });
+            },
                        child: Text("Continue"),
                       style: TextButton.styleFrom(
                       backgroundColor: Colors.orange[800],
