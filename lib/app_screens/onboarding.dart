@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -53,6 +54,12 @@ class _onboarding_screenState extends State<onboarding_screen> {
             height: 250,
             padding:EdgeInsets.symmetric(horizontal: 100),
             child: PageView(
+              onPageChanged: (index){
+                setState(() {
+                  _currentPage=index;
+                });
+              },
+              physics: BouncingScrollPhysics(),
               controller: _controller,
               children: [
                 Container(
@@ -154,6 +161,7 @@ class _onboarding_screenState extends State<onboarding_screen> {
                       TextButton(
                          onPressed: () {
               setState(() {
+                //_currentPage=_currentPage;
                 if (_currentPage == 2) {
                   Navigator.push(
                     context,
@@ -161,7 +169,12 @@ class _onboarding_screenState extends State<onboarding_screen> {
                       builder: (context) => const signin_screen(),
                     ),
                   );
-                } else {
+                  _currentPage=0;
+                  _controller.animateToPage(_currentPage, duration: Duration(milliseconds: 300), curve: Curves.linear);
+                  
+                  _controller2.animateToPage(_currentPage,duration: Duration(milliseconds: 300), curve: Curves.linear);
+                } 
+                else {
                   _currentPage = (_currentPage + 1) % 3;
                   _controller.animateToPage(_currentPage, duration: Duration(milliseconds: 300), curve: Curves.linear);
                   

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_application_1/home/widgets/custom_widgets.dart';
@@ -12,38 +14,154 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              SizedBox(height: 10,),
-              //CustomAppBar(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-            
-                  IconButton(
-                    onPressed: () {
-                    Navigator.pop(context);
-                    },
-                    icon: Icon(
-                    Icons.arrow_back_ios_rounded,
-                    color: Colors.grey[500],
-                    size: 15,
-                    ),
-                  ),
+              
+              CustomAppBar(),
+              SizedBox(height: 0,),
+              Cashback(),
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal:30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CategoryItem(title: "Flash Deal", iconPath: "assets/icons/Flash Icon.svg"),
+                    CategoryItem(title:"Bill" , iconPath:"assets/icons/Bill Icon.svg" ),
+                    CategoryItem(title:"Game" , iconPath:"assets/icons/Game Icon.svg" ),
+                    CategoryItem(title: "Daily Gift", iconPath: "assets/icons/Gift Icon.svg"),
+                    CategoryItem(title: "More", iconPath: "assets/icons/Discover.svg"),
+                  ],
                   
-                  const Expanded(
-                    child: Text("HomeScreen",
-                    textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Row(
+                  children: [
+                    Text("Special for you",
                       style:TextStyle(
-                        color: Color.fromARGB(220, 167, 164, 164),
-                        fontSize: 18,
+                        color: Colors.black,
+                        fontSize: 20,
                         fontFamily:"Muli",
                         fontWeight: FontWeight.w500,
                         ),
                     ),
-                  )
-                ],
+                    Expanded(child:Text("")),
+                    Text("See More",
+                      style:TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
+                        fontFamily:"Muli",
+                        fontWeight: FontWeight.w500,
+                        ),
+                    ),
+                  ],
+                ),
               ),
+
+              special_offers(),
+
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Row(
+                  children: [
+                    Text("Popular Product",
+                      style:TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontFamily:"Muli",
+                        fontWeight: FontWeight.w500,
+                        ),
+                    ),
+                    Expanded(child:Text("")),
+                    Text("See More",
+                      style:TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
+                        fontFamily:"Muli",
+                        fontWeight: FontWeight.w500,
+                        ),
+                    ),
+                  ],
+                ),
+              ),
+
+               SingleChildScrollView(scrollDirection: Axis.horizontal,
+    child:Container(
+      padding: EdgeInsets.only(left:20),
+      child: Row(
+        children:[
+          Container(
+          width: 170,
+          height: 200,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset("assets/images/Image Popular Product 1.png",
+            fit: BoxFit.cover,),
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+             gradient:LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Colors.black.withOpacity(.4),
+          Colors.black.withOpacity(0),
+        ],
+      ),
+          ),
+        ),
+        SizedBox(width: 20,),
+        Container(
+          
+          width: 170,
+          height: 200,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset("assets/images/Image Popular Product 2.png",
+            fit: BoxFit.cover,),
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            gradient:  LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Colors.black.withOpacity(.4),
+          Colors.black.withOpacity(0),
+        ],
+      ),
+          ),
+        ),SizedBox(width: 20,),
+        Container(
+          width: 170,
+          height: 200,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset("assets/images/Image Popular Product 3.png",
+            fit: BoxFit.cover,),
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+             gradient:LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Colors.black.withOpacity(.4),
+          Colors.black.withOpacity(0),
+        ],
+      ),
+          ),
+        ),
+        ]
+      ),
+    ) ,
+    )
             ],
           ),
         ),
@@ -51,167 +169,116 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-class test_screen extends StatelessWidget {
-  const test_screen({super.key});
+
+class special_offers extends StatelessWidget {
+  const special_offers({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-	body: ListView(
-    children: [
-      CarouselSlider(
-        carouselController: CarouselController(),
-        items: [
+    return SingleChildScrollView(scrollDirection: Axis.horizontal,
+    child:Container(
+      padding: EdgeInsets.only(left:20),
+      child: Row(
+        children:[
           Container(
-            margin: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              image: DecorationImage(
-                image: AssetImage("assets/images/onboarding_screen_1.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
+          width: 300,
+          height: 100,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset("assets/images/Image Banner 2.png",
+            fit: BoxFit.cover,),
           ),
-          Container(
-            margin: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              image: DecorationImage(
-                image: AssetImage("assets/images/onboarding_screen_2.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              image: DecorationImage(
-                image: AssetImage("assets/images/onboarding_screen_3.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ], 
-        options: CarouselOptions(
-            height: 350,
+          decoration: BoxDecoration(
             
-            enlargeCenterPage: true,
-            
-            
-            autoPlayCurve: Curves.fastOutSlowIn,
-            enableInfiniteScroll: true,
-            autoPlayAnimationDuration: Duration(milliseconds: 800),
-            viewportFraction: 0.5,
           ),
         ),
-    ]),
+        SizedBox(width: 20,),
+        Container(
+          
+          width: 300,
+          height: 100,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset("assets/images/Image Banner 2.png",
+            fit: BoxFit.cover,),
+          ),
+          decoration: BoxDecoration(
+            
+            
+          ),
+        ),SizedBox(width: 20,),
+        Container(
+          width: 300,
+          height: 100,
+          child: Image.asset("assets/images/Image Banner 2.png",
+          fit: BoxFit.cover,),
+          decoration: BoxDecoration(
+            
+          ),
+        ),
+        ]
+      ),
+    ) ,
     );
   }
 }
 
-class TestScreen extends StatefulWidget {
-  @override
-  _TestScreenState createState() => _TestScreenState();
-}
-
-class _TestScreenState extends State<TestScreen> {
-  int _currentPage = 0;
-  PageController _controller = PageController();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+class Cashback extends StatelessWidget {
+  const Cashback({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: 350,
-            padding:EdgeInsets.symmetric(horizontal: 100),
-            child: PageView(
-              controller: _controller,
-              children: [
-                Container(
-                  margin: EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/onboarding_screen_1.png"),
-                      fit: BoxFit.cover,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Container(
+        height: 80,
+        width: double.maxFinite,
+        decoration:BoxDecoration(
+          color: Colors.purple[900],
+          borderRadius: BorderRadius.circular(20)
+        ),
+        child: Row(
+          
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left:20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                
+                children: [
+                 
+                  Text("A Summer Surprise",
+                    
+                      style:TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontFamily:"Muli",
+                        fontWeight: FontWeight.w500,
+                        ),
                     ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/onboarding_screen_2.png"),
-                      fit: BoxFit.cover,
+                    SizedBox(height:6 ,),
+                    Text("Cashback 20%",
+                    
+                      style:TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontFamily:"Muli",
+                        fontWeight: FontWeight.w500,
+                        ),
                     ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/onboarding_screen_3.png"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 50,),
-          TextButton(
-            child: Text("Continue"),
-            onPressed: () {
-              setState(() {
-                if (_currentPage == 2) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const signin_screen(),
-                    ),
-                  );
-                } else {
-                  _currentPage = (_currentPage + 1) % 3;
-                  _controller.animateToPage(_currentPage, duration: Duration(milliseconds: 300), curve: Curves.linear);
-                }
-              });
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
-
-class pageview_test extends StatelessWidget {
-  const pageview_test({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: PageView(
-        scrollDirection: Axis.horizontal,
-            children: [
-             Container(width: 200,height: 350,
-              child: Image.asset("assets/images/onboarding_screen_3.png")),
-              Container(width: 200,height: 350,
-              child: Image.asset("assets/images/onboarding_screen_3.png")),
-             Container(width: 200,height: 350,
-             child: Image.asset("assets/images/onboarding_screen_3.png")),
-            ],
-          ),
-    );
-  }
-}
+  

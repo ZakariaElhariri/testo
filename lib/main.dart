@@ -1,11 +1,22 @@
+import 'dart:ui';
+import 'home/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home/home_screen.dart';
+import 'package:flutter_application_1/home/profile.dart';
 import 'app_screens/onboarding.dart';
 import 'app_screens/signup.dart';
 import 'app_screens/signin.dart';
 //import 'package:flython/flython.dart';
 // lcode kamel hna fel main
 // I tried to use some of the things i knew in flutter to help style the onboarding screen , walakine ma3reftsh kifash nrje3 l continue button orange
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
+}
 void main() {
   runApp(const MyApp());
 }
@@ -17,13 +28,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: AppScrollBehavior(),
       title: 'login page test',
         theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: "/onboarding",
+      initialRoute: "/home",
       routes: {
-        "/test":(context) =>  TestScreen(),
+        //"/profile":(context) => profile(),
         "/onboarding":(context) => const onboarding_screen(),
         "/home":(context) => const HomeScreen(),
         "/signin":(context) => const signin_screen(),
