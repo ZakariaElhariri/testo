@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: "/home",
+      initialRoute: "/onboarding",
       routes: {
         //"/profile":(context) => profile(),
         "/onboarding":(context) => const onboarding_screen(),
